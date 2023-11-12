@@ -4,8 +4,12 @@ from .models import Round, Movie, ScoringScheme
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.decorators import api_view, renderer_classes
+from rest_framework.renderers import JSONRenderer
 
 # Create your views here.
+@api_view(('GET',))
+@renderer_classes((JSONRenderer, ))
 def mainpage(request):
     return Response({"Message": "This worked"}, status=203)
 
