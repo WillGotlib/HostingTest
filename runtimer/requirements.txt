@@ -1,7 +1,8 @@
 asgiref==3.7.2
 certifi==2023.7.22
 charset-normalizer==3.3.2
-Django==2.2.1
+Django==4.2.7
+djangorestframework==3.14.0
 gunicorn==21.2.0
 idna==3.4
 packaging==23.2
