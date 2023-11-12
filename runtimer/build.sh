@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 set -o errexit  # exit on error
 
@@ -9,5 +9,5 @@ python manage.py migrate
 
 if [[ $CREATE_SUPERUSER ]];
 then
-  python runtimer/manage.py createsuperuser --no-input
+  python manage.py createsuperuser --no-input
 fi
