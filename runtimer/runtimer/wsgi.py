@@ -1,5 +1,5 @@
 """
-WSGI config for deploytest project.
+WSGI config for runtimer project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'deploytest.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'runtimer.settings')
 
 application = get_wsgi_application()
