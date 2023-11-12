@@ -11,7 +11,7 @@ from rest_framework.renderers import JSONRenderer
 @api_view(('GET',))
 @renderer_classes((JSONRenderer, ))
 def mainpage(request):
-    img = open('runtimer/media/test/wonka-flash.jpg', 'rb')
+    img = open('runtimer/static/test/wonka-flash.jpg', 'rb')
     return FileResponse(img)
     # return Response({"Message": "This worked"}, status=203)
 
