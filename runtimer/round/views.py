@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .models import Round, Movie, ScoringScheme
-# from django.http import HTTPResponse
+from django.http import FileResponse
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -11,7 +11,9 @@ from rest_framework.renderers import JSONRenderer
 @api_view(('GET',))
 @renderer_classes((JSONRenderer, ))
 def mainpage(request):
-    return Response({"Message": "This worked"}, status=203)
+    img = open('runtimer/media/test/wonka-flash.jpg', 'rb')
+    return FileResponse(img)
+    # return Response({"Message": "This worked"}, status=203)
 
 class SchemesLoadUtilityView(APIView):
     def get(self, request):
