@@ -3,7 +3,8 @@ from .models import Round, Movie, ScoringScheme
 from .utils import SCHEME_CHOICES, SCHEME_LIST, SCHEME_DESCRIPTIONS
 from django.http import FileResponse
 
-from rest_framework.views import APIView, ListAPIView
+from rest_framework.views import APIView
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, renderer_classes
 from rest_framework.renderers import JSONRenderer
