@@ -16,7 +16,9 @@ from rest_framework.renderers import JSONRenderer
 @api_view(('GET',))
 @renderer_classes((JSONRenderer, ))
 def mainpage(request):
-    print("bruh")
+    if not ScoringScheme.objects.count():
+        print("Nothing here. Populating")
+        ret = ScoringScheme.populate()    
     return Response({"Message": "This worked"}, status=203)
     img = open('static/test/wonka-flash.jpg', 'rb')
     return FileResponse(img)
