@@ -4,6 +4,7 @@ from django.http import FileResponse
 from .models import Round, Movie, ScoringScheme
 from .utils import SCHEME_CHOICES, SCHEME_LIST, SCHEME_DESCRIPTIONS
 from .serializers import *
+from .forms import GuessForm
 
 from rest_framework.views import APIView
 from rest_framework.generics import ListAPIView
@@ -47,14 +48,14 @@ class SubmitGuessView(APIView):
     def post(self, request):
         form = GuessForm(request.POST)
         print("We form now!")
-        print(form)
-        if form.is_valid():
-            print("Form valid -- " + str(form.cleaned_data))
-            guess = form.cleaned_data['guess']
-            index = form.cleaned_data['index']
-            r_id = form.cleaned_data['r_id']
-            m_id = form.cleaned_data['m_id']
-            print(f"Guess = {guess}, Round ID = {r_id}")
+        if not form.is_valid(): 
+            return Response("Form was invalid. Could not carry on. Remember to include guess, index, r_id, m_id", status=500)
+        print("Form valid -- " + str(form.cleaned_data))
+        guess = form.cleaned_data['guess']
+        index = form.cleaned_data['index']
+        r_id = form.cleaned_data['r_id']
+        m_id = form.cleaned_data['m_id']
+        print(f"Guess = {guess}, Round ID = {r_id}")
         movie = Movie.objects.get(id=m_id) # NOTE: Dumb thing which is important here: ID and TMDB_ID are not necessarily equal. Would be nice...
 
         score_info = {
