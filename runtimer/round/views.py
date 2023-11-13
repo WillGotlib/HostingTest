@@ -34,6 +34,42 @@ class NewRoundView(APIView):
         ser = RoundSerializer(round)
         return Response(ser.data)
 
+class SubmitGuessView(APIView):
+    def add_score(self, round, index, score):
+        split_list = round.scores.split(',')
+        print("CONVERTED LIST: \n" + str(split_list))
+        split_list[index] = str(score)
+        print("MODIFIED LIST: \n" + str(split_list))
+        split_list = ','.join(split_list)
+        round.scores = split_list
+        round.save()
+    
+    def post(self, request):
+        form = GuessForm(request.POST)
+        print("We form now!")
+        print(form)
+        if form.is_valid():
+            print("Form valid -- " + str(form.cleaned_data))
+            guess = form.cleaned_data['guess']
+            index = form.cleaned_data['index']
+            r_id = form.cleaned_data['r_id']
+            m_id = form.cleaned_data['m_id']
+            print(f"Guess = {guess}, Round ID = {r_id}")
+        movie = Movie.objects.get(id=m_id) # NOTE: Dumb thing which is important here: ID and TMDB_ID are not necessarily equal. Would be nice...
+
+        score_info = {
+            "guess": guess,
+            "runtime": movie.runtime,
+            "score": 0,
+            "feedback": ""
+        }
+
+        round = Round.objects.get(id=r_id)
+        score_info['score'], score_info['feedback'] = round.determine_score(guess, movie.runtime)
+        self.add_score(round, index, score_info['score'])
+        print("SCORE INFO", score_info)
+        return Response(score_info)
+
 class SchemesView(ListAPIView):
     def get(self, request):
         d = {}
