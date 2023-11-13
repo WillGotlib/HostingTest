@@ -1,6 +1,8 @@
 from django.db import models
 from django.core.validators import validate_comma_separated_integer_list
 from .utils import STANDARD, SCHEME_LIST, SCHEME_CHOICES, SCHEME_SCORERS, SCHEME_DESCRIPTIONS
+import runtimer.variables as vars
+
 
 import random
 import requests
@@ -79,14 +81,16 @@ class Round(models.Model):
         self.scores = scores_temp
         print("SCORES: " +self.scores)
 
-        Movie.clear_movies(self)
+        # Movie.clear_movies(self)
         print("GENERATION START: SIZE = " + str(self.size) + "\n")
         for i in range(self.size):
             print("\ti = " + str(i) + "\n")
             x = None
             pass_ind = False
+            print(Movie)
             while (not pass_ind):  
                 sample_number = random.randrange(vars.RANGE_LOW, vars.RANGE_HIGH)
+                print(Movie.objects)
                 
                 new_movie = None
                 if not Movie.objects.filter(tmdb_id=sample_number):  # This movie is not already in the database. Let's query...     

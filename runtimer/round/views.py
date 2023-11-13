@@ -15,9 +15,10 @@ from rest_framework.renderers import JSONRenderer
 @api_view(('GET',))
 @renderer_classes((JSONRenderer, ))
 def mainpage(request):
+    print("bruh")
+    return Response({"Message": "This worked"}, status=203)
     img = open('static/test/wonka-flash.jpg', 'rb')
     return FileResponse(img)
-    # return Response({"Message": "This worked"}, status=203)
 
 class NewRoundView(APIView):
     def post(self, request):
