@@ -1,10 +1,26 @@
-.App {
-  text-align: center;
+html, body {
+  height: 100%;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  overflow-y:hidden;
+}
+
+footer {
+  position: fixed;
+  bottom: 0%;
+  width: 100%;
+  padding: 10px;
+  background-color: darkcyan;
+  color: white;
+}
+
+.App {
+  text-align: center;
+  height: 100vh;
+  padding-left: auto;
+  padding-right: auto;
+  background-color:darkorange;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -15,17 +31,36 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #61dafb;
+}
+
+.page-container {
+  background-color: #444444;
+}
+
+.game-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width:50%;
+  height:100%;
+  background-color:bisque;
+}
+
+.main-poster {
+  max-height: 40vh;
+}
+
+.runtime-in {
+  width: 100px;
 }
 
 @keyframes App-logo-spin {
@@ -36,3 +71,82 @@
     transform: rotate(360deg);
   }
 }
+
+.elements-container {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.schemesRadio {
+  display: flex;
+}
+
+/* Radio shit taken from https://uiverse.io/Pradeepsaranbishnoi/slimy-warthog-37 */
+.schemesRadio div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.schemesRadio input[type="radio"] {
+  height: 1px;
+  overflow: hidden;
+  width: 1px;
+}
+
+.schemesRadio input[type="radio"]:checked + span {
+  box-shadow: 0 0 0 0.0625em #0043ed;
+  background-color: #dee7ff;
+  z-index: 1;
+  color: #0043ed;
+}
+
+label span {
+  cursor: pointer;
+  background-color: #fff;
+  padding: 0.375em .75em;
+  /* position: relative; */
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+  transition: background-color .5s ease;
+}
+
+.score-sys-boxes {
+  cursor: pointer;
+  background-color: #fff;
+  /* position: relative; */
+  margin-left: .0625em;
+  box-shadow: 0 0 0 0.0625em #b5bfd9;
+  letter-spacing: .05em;
+  color: #3e4963;
+  text-align: center;
+}
+
+#score-sys-title {
+  border-radius: .375em .375em 0 0;
+}
+
+#score-sys-desc {
+  font-size: smaller;
+  border-radius: 0 0 .375em .375em;
+}
+
+.score-sys-container {
+  width: 350px;
+  display: block;
+  align-content: center;
+}
+
+/* label:first-child span {
+  border-radius: .375em 0 0 .375em;
+}
+
+label:last-child span {
+  border-radius: 0 .375em .375em 0;
+} */
+
+/* End of Radio Shit */
