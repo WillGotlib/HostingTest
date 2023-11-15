@@ -1,12 +1,13 @@
-import React, {useEffect, useState} from "react";
-// import useGameContext from "../../hooks/useGameContext";
+import React, {useContext, useEffect, useState} from "react";
+import useGameContext from "../../hooks/useGameContext";
+import GameContext from "../../contexts/gameContext";
 import useStaticVarsContext from "../../hooks/useStaticVarsContext";
 
 const GameSetup = () => {
-    // const {
-    //     handlePageChange,
-    //     fetchGameHelper,
-    // } = useGameContext()
+    const {
+        handlePageChange,
+        fetchGameHelper
+    } = useGameContext()
 
     const {
         scoreSchemes,
@@ -20,10 +21,9 @@ const GameSetup = () => {
     const handleGameStart = e => {
         e.preventDefault()
         console.log("Switching to main game.")
-        console.log("fetchGameHelper(selectedScheme, e.currentTarget.elements.size.value)")
-        // fetchGameHelper(selectedScheme, e.currentTarget.elements.size.value)
-        console.log("handlePageChange(1)")
-        // handlePageChange(1)
+        console.log("Fetch game helper", fetchGameHelper)
+        fetchGameHelper(selectedScheme, e.currentTarget.elements.size.value)
+        handlePageChange(1)
     }
 
     const handleSchemeChange = e => {
@@ -39,7 +39,7 @@ const GameSetup = () => {
         setCurrentDesc(scoreSchemes[selectedScheme]?.description ?? "Not working")
         // setCurrentDesc(scoreSchemes[e.target.value].description)
         fetchSchemesHelper()
-    })
+    }, [selectedScheme, scoreSchemes, fetchSchemesHelper, schemesList])
 
     return (
         <>
