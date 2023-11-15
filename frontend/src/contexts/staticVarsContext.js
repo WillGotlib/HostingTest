@@ -3,7 +3,7 @@ import React from 'react'
 
 import axios from 'axios'
 
-const base_url = "https://www.willgotlib.com" // FOR NOW!!!! WILL CHANGE!!!
+const base_url = "https://www.willgotlib.com/api" // FOR NOW!!!! WILL CHANGE!!!
 
 const StaticVarsContext = createContext({})
 

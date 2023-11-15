@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 
 import GameSetup from "../../components/GameSetup"
-// import GameFinale from "../../components/GameFinale"
+import GameFinale from "../../components/GameFinale"
 import GameMain from "../../components/GameMain"
 import useGameContext from "../../hooks/useGameContext"
 import { StaticVarsProvider } from '../../contexts/staticVarsContext'
@@ -13,7 +13,7 @@ const GameElements = () => {
     const display = {
         0: <StaticVarsProvider><GameSetup /></StaticVarsProvider>,
         1: <GameMain />,
-        // 2: <GameFinale />
+        2: <GameFinale />
     }
 
     return (
