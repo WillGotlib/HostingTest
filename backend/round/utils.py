@@ -42,19 +42,23 @@ SCHEME_DESCRIPTIONS = {
 # Extra: [DICT] A Dictionary of any other fields we might want...included for future flexibility.
 
 def score_standard(guess, truth, extra):
+    print("Scoring Standard")
     x = abs(guess - truth)/(truth / 10)
     return vars.CORRECT_SCORE * math.exp(-math.pow(x, 2))
 
 def score_golf(guess, truth, extra):
+    print("Scoring Golf")
     return abs(guess - truth)
 
 def score_lenient(guess, truth, extra):
     diff = abs(guess - truth)
+    print("Scoring Lenient")
     if diff <= lenient_threshold: 
         return vars.CORRECT_SCORE
     return math.max(0, (vars.CORRECT_SCORE/lenient_max_error)*(diff - lenient_threshold) + 10)
 
 def score_strict(guess, truth, extra):
+    print("Scoring Strict")
     return 10 if guess == truth else 0
                 
     
