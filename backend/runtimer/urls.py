@@ -18,12 +18,20 @@ from django.contrib import admin
 from django.urls import path, include#, re_path
 from django.shortcuts import render
 
+# For favicon.ico...this is really unnecessary just for practice.
+from django.contrib.staticfiles.storage import staticfiles_storage
+from django.views.generic.base import RedirectView
+
+from round.views import mainpage
+
 # def render_react(request):
 #     return render(request, "index.html")
 
 urlpatterns = [
+    path('', mainpage, name='Main Game Page'),
     path('admin/', admin.site.urls),
     path('api/', include('round.urls')),
+    path('favicon.ico', RedirectView.as_view(url=staticfiles_storage.url('test/favicon.ico')))
     # re_path("react/", render_react),
     # re_path(r"^$", render_react),
     # re_path(r"^(?:.*)/?$", render_react),

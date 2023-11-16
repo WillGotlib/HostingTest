@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import HttpResponse
 from django.http import FileResponse
+from django.template import loader
 
 from .models import Round, Movie, ScoringScheme
 from .utils import SCHEME_CHOICES, SCHEME_LIST, SCHEME_DESCRIPTIONS
@@ -19,9 +20,13 @@ def mainpage(request):
     if not ScoringScheme.objects.count():
         print("Nothing here. Populating")
         ret = ScoringScheme.populate()    
-    return Response({"Message": "This worked"}, status=203)
+    # return Response({"Message": "This worked"}, status=203)
+    template = loader.get_template('base.html')
+    print("ghjrghkr")
+    return HttpResponse(template.render({}, request))
     img = open('static/test/wonka-flash.jpg', 'rb')
-    return FileResponse(img)
+    context = {'image': img}
+    return Response(request, 'index.html', context=context)
 
 class NewRoundView(APIView):
     def post(self, request):
