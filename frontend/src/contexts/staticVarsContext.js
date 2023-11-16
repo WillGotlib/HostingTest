@@ -3,7 +3,7 @@ import React from 'react'
 
 import axios from 'axios'
 
-const base_url = "https://willgotlib.com/api" // FOR NOW!!!! WILL CHANGE!!!
+const base_url = "https://willgotlib.pythonanywhere.com/api" // FOR NOW!!!! WILL CHANGE!!!
 
 const StaticVarsContext = createContext({})
 
@@ -19,11 +19,13 @@ export const StaticVarsProvider = ({ children }) => {
     const fetchSchemes = async () => {
         console.log('-'.repeat(50));
         console.log('FETCHING SCORING SCHEMES');
-        axios.get(`${base_url}/schemes/`, {
-            "headers": {
-                "accept": "application/json",
-                "Access-Control-Allow-Origin":"*" }
-            }).then(function (response) {
+        axios.get(`${base_url}/schemes/`, 
+            // {
+            // "headers": {
+            //     "accept": "application/json",
+            //     "Access-Control-Allow-Origin":"*" }
+            // }
+            ).then(function (response) {
             console.log("Score Fetch - it worked?", response.data)
             setSchemesList(response.data.list)
             setScoreSchemes(response.data.dictionary)
