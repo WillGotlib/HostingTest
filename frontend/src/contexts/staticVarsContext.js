@@ -19,7 +19,11 @@ export const StaticVarsProvider = ({ children }) => {
     const fetchSchemes = async () => {
         console.log('-'.repeat(50));
         console.log('FETCHING SCORING SCHEMES');
-        axios.get(`${base_url}/schemes/`).then(function (response) {
+        axios.get(`${base_url}/schemes/`, {
+            "headers": {
+                "accept": "application/json",
+                "Access-Control-Allow-Origin":"*" }
+            }).then(function (response) {
             console.log("Score Fetch - it worked?", response.data)
             setSchemesList(response.data.list)
             setScoreSchemes(response.data.dictionary)
