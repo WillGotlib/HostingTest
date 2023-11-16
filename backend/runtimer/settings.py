@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-j9z_d%zj*zw7b^=((0^t=prtx2pcbqqyp8wh%e=yr&gwlpl&%r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hosttest2.onrender.com', 'www.willgotlib.com', '127.0.0.1']
+ALLOWED_HOSTS = ['hosttest2.onrender.com', 'www.willgotlib.com', '127.0.0.1', "willgotlib.pythonanywhere.com"]
 
 
 # Application definition
