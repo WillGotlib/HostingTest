@@ -87,12 +87,14 @@ class Round(models.Model):
             print("\ti = " + str(i) + "\n")
             x = None
             pass_ind = False
-            print(Movie)
+            failures_counter = 0
             while (not pass_ind):  
+                if (failures_counter > vars.FAILURE_SAFEGUARD_THRESHOLD): return -2
                 sample_number = random.randrange(vars.RANGE_LOW, vars.RANGE_HIGH)
                 # Query the <sample_number>-th most popular movie on tmdb for its ID. 
                 # This might be a bit of a wasteful process but whatever. We do need the extra data anyway.
-                x = requests.get('https://api.themoviedb.org/3/movie/top_rated/?page=' + str(sample_number // 20) + "&api_key=vars.key")
+                p = sample_number // 20 + 1
+                x = requests.get('https://api.themoviedb.org/3/movie/top_rated?page=' + str(p) + "&api_key=" +vars.key)
                 if (x is None or x.status_code == 404):
                     continue
                 j = x.json()
@@ -115,11 +117,15 @@ class Round(models.Model):
                     new_movie.save()
                     print("\tSaved a new Movie object to the database.")
                 else:
+                    print("\tQueried movie was already in the database.")
                     new_movie = Movie.objects.get(tmdb_id=sample_number)
                 print("\tRetrived Successfully: " + str(Movie.objects.get(tmdb_id=sample_number)))
                 self.movies.add(new_movie)
                 pass_ind = True
+        print("Generation Complete!")
         self.save()
+        print("Saved to database.")
+        return 0
 
     # RETURNS (score, feedback)
     #       score -> a float number between 0 and vars.CORRECT_SCORE

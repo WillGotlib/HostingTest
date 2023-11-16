@@ -5,3 +5,6 @@ RANGE_LOW = 0
 RANGE_HIGH = 10
 
 CORRECT_SCORE = 10
+
+# Number of times a set of queries can be allowed to fail before we abandon (like a timeout)
+FAILURE_SAFEGUARD_THRESHOLD = 10

@@ -38,7 +38,8 @@ class NewRoundView(APIView):
         print(sch)
         round = Round.objects.create(size=int(request.data['size']), scheme=ScoringScheme.objects.get(pk=sch))
         print("---- NEWROUNDVIEW: Creating New Round ----")
-        round.generate_movies(self.request)
+        if round.generate_movies(self.request) < 0:
+            return Response("Querying to TMDB failed. Try reloading.", status=501)
         ser = RoundSerializer(round)
         return Response(ser.data)
 
