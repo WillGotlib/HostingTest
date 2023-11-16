@@ -55,7 +55,7 @@ def score_lenient(guess, truth, extra):
     print("Scoring Lenient")
     if diff <= lenient_threshold: 
         return vars.CORRECT_SCORE
-    return math.max(0, (vars.CORRECT_SCORE/lenient_max_error)*(diff - lenient_threshold) + 10)
+    return max(0, (vars.CORRECT_SCORE/lenient_max_error)*(diff - lenient_threshold) + 10)
 
 def score_strict(guess, truth, extra):
     print("Scoring Strict")
