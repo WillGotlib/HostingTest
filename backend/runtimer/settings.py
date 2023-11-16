@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-j9z_d%zj*zw7b^=((0^t=prtx2pcbqqyp8wh%e=yr&gwlpl&%r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['hosttest2.onrender.com', 'www.willgotlib.com', '127.0.0.1', "willgotlib.pythonanywhere.com"]
+ALLOWED_HOSTS = ['www.willgotlib.com', '127.0.0.1', "willgotlib.pythonanywhere.com"]
 
 
 # Application definition
@@ -47,15 +47,21 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
+CORS_ALLOWED_ORIGINS = [
+    "https://www.willgotlib.com",
+    "https://rtgamefrontend.onrender.com",
+    "https://www.rtgamefrontend.onrender.com",
+    "http://localhost:3000",
+]
 
 ROOT_URLCONF = 'runtimer.urls'
 

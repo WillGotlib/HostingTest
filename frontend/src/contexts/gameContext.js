@@ -4,7 +4,7 @@ import axios from 'axios'
 
 const GameContext = createContext({})
 
-const base_url = "https://www.willgotlib.com/api" // FOR NOW!!!! WILL CHANGE!!!
+const base_url = "https://willgotlib.pythonanywhere.com/api" // FOR NOW!!!! WILL CHANGE!!!
 
 export const GameProvider = ({ children }) => {
     
