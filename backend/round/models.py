@@ -90,7 +90,13 @@ class Round(models.Model):
             print(Movie)
             while (not pass_ind):  
                 sample_number = random.randrange(vars.RANGE_LOW, vars.RANGE_HIGH)
-                print(Movie.objects)
+                # Query the <sample_number>-th most popular movie on tmdb for its ID. 
+                # This might be a bit of a wasteful process but whatever. We do need the extra data anyway.
+                x = requests.get('https://api.themoviedb.org/3/movie/top_rated/?page=' + str(sample_number // 20) + "&api_key=vars.key")
+                if (x is None or x.status_code == 404):
+                    continue
+                j = x.json()
+                sample_number = j['results'][sample_number % 20]["id"]
                 
                 new_movie = None
                 if not Movie.objects.filter(tmdb_id=sample_number):  # This movie is not already in the database. Let's query...     
